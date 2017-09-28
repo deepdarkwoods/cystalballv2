@@ -2,7 +2,7 @@ const electron = require('electron');
 const {app,BrowserWindow,ipcMain } = electron;
 const path = require('path');
 const url =  require('url');
-
+const sql = require('./SQL.js');
 
 
 let mainWindow;
@@ -21,9 +21,10 @@ app.on('ready',()=>{
 
 
 //Request for SQLQuery: List of Customers with Forecast
-ipcMain.on('SQLQuery:GetCustomerForecastList', (event, arg) => {
+ipcMain.on('SQLQuery:GetCustomerForecastList', (event) => {
     
-    
-    mainWindow.webContents.send('SQLResults:CustomerForecastList', 'Some Customers');
+    var res = sql.SQLQueryCustomerList();
+    //Send Results to Frontend
+    mainWindow.webContents.send('SQLResults:CustomerForecastList', res);
 
   })
