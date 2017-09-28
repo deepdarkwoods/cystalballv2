@@ -1,0 +1,15 @@
+{
+  "name": "ballversion2",
+  "version": "1.0.0",
+  "description": "Forecast App",
+  "main": "app.js",
+  "scripts": {
+    "electron": "electron ."
+  },
+  "author": "brad parker",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.8",
+    "mysql": "^2.14.1"
+  }
+}
