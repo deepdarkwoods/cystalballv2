@@ -23,8 +23,10 @@ app.on('ready',()=>{
 //Request for SQLQuery: List of Customers with Forecast
 ipcMain.on('SQLQuery:GetCustomerForecastList', (event) => {
     
-    var res = sql.SQLQueryCustomerList();
-    //Send Results to Frontend
-    mainWindow.webContents.send('SQLResults:CustomerForecastList', res);
+  sql.SQLQueryCustomerList(function(result){
+
+      mainWindow.webContents.send('SQLResults:CustomerForecastList', result);
+
+    });
 
   })
