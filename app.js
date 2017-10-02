@@ -21,12 +21,24 @@ app.on('ready',()=>{
 
 
 //Request for SQLQuery: List of Customers with Forecast
-ipcMain.on('SQLQuery:GetCustomerForecastList', (event) => {
+ipcMain.on('SQLQuery:GetCustomerList', (event) => {
     
   sql.SQLQueryCustomerList(function(result){
 
-      mainWindow.webContents.send('SQLResults:CustomerForecastList', result);
+      mainWindow.webContents.send('SQLResults:CustomerList', result);
 
     });
 
   })
+
+
+//Request for SQLQuery: Forecast by Customer with ship history
+ipcMain.on('mysql:request-forecastbycustomer', (event,customerid,forecasttype) => {
+
+    sql.SQLQueryCustomerForecast(customerid, forecasttype, function(result){
+
+      mainWindow.webContents.send('SQLResults:ForecastByCustomer', result);
+
+  });
+
+})
