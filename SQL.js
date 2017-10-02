@@ -27,29 +27,52 @@ let SQLQueryCustomerList = (callback) =>{
 }
 
 
+
 //Query MYSQL for forecast by customer and type
 let SQLQueryCustomerForecast = (customerid, forecasttype, callback) =>{        
         let query;
         //All customers and all forecast types
         if(customerid=="all" && forecasttype==="all"){
                 query = (`SELECT
-                        customernumber,customername,sku,
-                        SUM(CASE WHEN customerforecast.period="2017-09-30" then customerforecast.quantity else 0 end) as 'SEP 2017',
-                        SUM(CASE WHEN customerforecast.period="2017-10-28" then customerforecast.quantity else 0 end) as 'OCT 2017',
-                        SUM(CASE WHEN customerforecast.period="2017-11-25" then customerforecast.quantity else 0 end) as 'NOV 2017',
-                        SUM(CASE WHEN customerforecast.period="2017-12-31" then customerforecast.quantity else 0 end) as 'DEC 2017',
-                        SUM(CASE WHEN customerforecast.period="2018-01-27" then customerforecast.quantity else 0 end) as 'JAN 2017',
-                        SUM(CASE WHEN customerforecast.period="2018-02-24" then customerforecast.quantity else 0 end) as 'FEB 2017'
+                        customernumber,customername,sku,skudescription,
+                        SUM(CASE WHEN customerforecast.period="2017-09-30" then customerforecast.quantity else 0 end) as 'SEP2017',
+                        SUM(CASE WHEN customerforecast.period="2017-10-28" then customerforecast.quantity else 0 end) as 'OCT2017',
+                        SUM(CASE WHEN customerforecast.period="2017-11-25" then customerforecast.quantity else 0 end) as 'NOV2017',
+                        SUM(CASE WHEN customerforecast.period="2017-12-31" then customerforecast.quantity else 0 end) as 'DEC2017',
+                        SUM(CASE WHEN customerforecast.period="2018-01-27" then customerforecast.quantity else 0 end) as 'JAN2018',
+                        SUM(CASE WHEN customerforecast.period="2018-02-24" then customerforecast.quantity else 0 end) as 'FEB2018'
                         FROM customerforecast
                         GROUP BY customername,sku`);
 
         //Just customer is all
         }else if (customerid=="all") {
+                query = (`SELECT
+                        customernumber,customername,sku,skudescription,
+                        SUM(CASE WHEN customerforecast.period="2017-09-30" then customerforecast.quantity else 0 end) as 'SEP2017',
+                        SUM(CASE WHEN customerforecast.period="2017-10-28" then customerforecast.quantity else 0 end) as 'OCT2017',
+                        SUM(CASE WHEN customerforecast.period="2017-11-25" then customerforecast.quantity else 0 end) as 'NOV2017',
+                        SUM(CASE WHEN customerforecast.period="2017-12-31" then customerforecast.quantity else 0 end) as 'DEC2017',
+                        SUM(CASE WHEN customerforecast.period="2018-01-27" then customerforecast.quantity else 0 end) as 'JAN2018',
+                        SUM(CASE WHEN customerforecast.period="2018-02-24" then customerforecast.quantity else 0 end) as 'FEB2018'
+                        FROM customerforecast
+                        WHERE forecasttype = '${forecasttype}'
+                        GROUP BY customername,sku`);
+
 
         //Just Forecast type is all
         }else if (forecasttype=="all"){
 
-
+                query = (`SELECT
+                        customernumber,customername,sku,skudescription,
+                        SUM(CASE WHEN customerforecast.period="2017-09-30" then customerforecast.quantity else 0 end) as 'SEP2017',
+                        SUM(CASE WHEN customerforecast.period="2017-10-28" then customerforecast.quantity else 0 end) as 'OCT2017',
+                        SUM(CASE WHEN customerforecast.period="2017-11-25" then customerforecast.quantity else 0 end) as 'NOV2017',
+                        SUM(CASE WHEN customerforecast.period="2017-12-31" then customerforecast.quantity else 0 end) as 'DEC2017',
+                        SUM(CASE WHEN customerforecast.period="2018-01-27" then customerforecast.quantity else 0 end) as 'JAN2018',
+                        SUM(CASE WHEN customerforecast.period="2018-02-24" then customerforecast.quantity else 0 end) as 'FEB2018'
+                        FROM customerforecast
+                        WHERE customernumber = '${customerid}'
+                        GROUP BY customername,sku`);
         }
 
 

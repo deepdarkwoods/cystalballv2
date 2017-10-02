@@ -1,6 +1,6 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const $ = require('jquery');
+
 
 
 
@@ -62,7 +62,7 @@ ipcRenderer.on('SQLResults:CustomerList',(event,res)=>{
         var forecasttype = $('#selectboxforecasttype').val();
 
         //send MYSQL request to MAIN process 
-        ipcRenderer.send('mysql:request-forecastbycustomer',customerid,forecasttype);       
+        ipcRenderer.send('SQLQuery:GetCustomerForecast',customerid,forecasttype);       
     };
 
     //append elements to div
@@ -77,6 +77,3 @@ ipcRenderer.on('SQLResults:CustomerList',(event,res)=>{
 
 
 
-ipcRenderer.on('SQLResults:ForecastByCustomer',(event,res)=>{
-    console.log(res);
-});

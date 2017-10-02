@@ -33,10 +33,10 @@ ipcMain.on('SQLQuery:GetCustomerList', (event) => {
 
 
 //Request for SQLQuery: Forecast by Customer with ship history
-ipcMain.on('mysql:request-forecastbycustomer', (event,customerid,forecasttype) => {
+ipcMain.on('SQLQuery:GetCustomerForecast', (event,customerid,forecasttype) => {
 
     sql.SQLQueryCustomerForecast(customerid, forecasttype, function(result){
-
+    
       mainWindow.webContents.send('SQLResults:ForecastByCustomer', result);
 
   });

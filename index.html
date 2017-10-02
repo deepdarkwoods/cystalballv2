@@ -1,5 +1,13 @@
 
-<html>    
+<html>
+    <head>
+            <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+            <script src= "Downloads\jquery-3.2.1.min.js"></script>
+            <script src= "Downloads\jquery-ui-1.12.1.custom\jquery-ui.min.js"></script>            
+            <link rel="stylesheet" href="Downloads\tabulator-master\dist\css\tabulator_site.css">
+            <script type="text/javascript" src="Downloads\tabulator-master\dist\js\tabulator.js"></script>
+            <script>if (window.module) module = window.module;</script>
+    </head>    
 <button onclick="ipcRenderer.send('SQLQuery:GetCustomerList')">Forecast By Customer</button>
 <button>Forecast By Sku</button>
 <button>Forecast Summary - All Customers</button>
@@ -7,4 +15,7 @@
 <div id="options1"></div>
 <div id="results"></div>
 </html>
+
 <script src="index.js"></script>
+<script src="tabulator.js"></script>
+
