@@ -37,7 +37,32 @@ ipcMain.on('SQLQuery:GetCustomerForecast', (event,customerid,forecasttype) => {
 
     sql.SQLQueryCustomerForecast(customerid, forecasttype, function(result){
     
-      mainWindow.webContents.send('SQLResults:ForecastByCustomer', result);
+      mainWindow.webContents.send('SQLResults:Forecast', result);
+
+  });
+
+})
+
+
+
+//Request for SQLQuery: List of Skus with Forecast
+ipcMain.on('SQLQuery:GetSkuList', (event) => {
+  
+sql.SQLQuerySkuList(function(result){
+    
+    mainWindow.webContents.send('SQLResults:SkuList', result);
+
+  });
+
+})
+
+
+//Request for SQLQuery: List of Skus with Forecast
+ipcMain.on('SQLQuery:GetSkuForecast', (event,sku,forecasttype) => {
+  
+sql.SQLQuerySkuForecast(sku,forecasttype,function(result){
+    
+    mainWindow.webContents.send('SQLResults:Forecast', result);
 
   });
 

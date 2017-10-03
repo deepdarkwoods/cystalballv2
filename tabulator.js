@@ -3,7 +3,7 @@
 
 
 //On MYSQL results from Forecast by customer, show table
-ipcRenderer.on('SQLResults:ForecastByCustomer',(event,res)=>{
+ipcRenderer.on('SQLResults:Forecast',(event,res)=>{
 
 
     //Get names of column headers
@@ -17,26 +17,46 @@ ipcRenderer.on('SQLResults:ForecastByCustomer',(event,res)=>{
         selectable:true,
                                      
     columns:[
-        {title:"Customer Name", field:"customername", frozen:true,headerFilter:"input",width:130},
-        {title:"Sku", field:"sku", frozen:true,headerFilter:"input",width:100},
-        {title:"Description", field:"skudescription", frozen:true,headerFilter:"input"},
-        {title:"Customer Number", field:"customernumber",width:90},         
+                    {title:"Customer Name", field:"customername", frozen:true,headerFilter:"input",width:130},
+                    {title:"Sku", field:"sku", frozen:true,headerFilter:"input",width:100},
+                    {title:"Description", field:"skudescription", frozen:true,headerFilter:"input"},
+                    {title:"Customer Number", field:"customernumber",width:90},    
 
-         {//create column group
-            title:"Forecast by Period (Eaches)",
-            columns:[
-                {title:monthNames[0], field:"SEP2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
-                {title:monthNames[1], field:"OCT2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
-                {title:monthNames[2], field:"NOV2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
-                {title:monthNames[3], field:"DEC2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
-                {title:monthNames[4], field:"JAN2018",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
-                {title:monthNames[5], field:"FEB2018",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}} 
-                //{title:"Shipments / Forecast", field:"shipforecastarray",download:false, width:160, formatter:lineFormatter}                       
+                    {//create column group
+                        title:"Shipments by Period (Eaches)",
+                        columns:[
+                            {title:monthNames[13], field:"shipJAN2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[12], field:"shipFEB2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[11], field:"shipMAR2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[10], field:"shipAPR2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[9], field:"shipMAY2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[8], field:"shipJUN2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}}, 
+                            {title:monthNames[7], field:"shipJUL2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[6], field:"shipAUG2017",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},  
+                            
+                            ,]
+                    },//end column group
 
-                ,]
-        }//end column group
+                    //spacer column
+                    {
+                        columns:[{title:""}],
+                    },
 
-    ]
+                    {//create column group
+                        title:"Forecast by Period (Eaches)",
+                        columns:[
+                            {title:monthNames[0], field:"SEP2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[1], field:"OCT2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[2], field:"NOV2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[3], field:"DEC2017",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[4], field:"JAN2018",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}},
+                            {title:monthNames[5], field:"FEB2018",editor:"number",align:"right",formatter:"money",minWidth:60,formatterParams:{precision:"false"}} 
+                            //{title:"Shipments / Forecast", field:"shipforecastarray",download:false, width:160, formatter:lineFormatter}                       
+
+                            ,]
+                    }//end column group
+
+            ]
 
     });
 

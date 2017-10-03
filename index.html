@@ -9,7 +9,7 @@
             <script>if (window.module) module = window.module;</script>
     </head>    
 <button onclick="ipcRenderer.send('SQLQuery:GetCustomerList')">Forecast By Customer</button>
-<button>Forecast By Sku</button>
+<button onclick="ipcRenderer.send('SQLQuery:GetSkuList')">Forecast By Sku</button>
 <button>Forecast Summary - All Customers</button>
 <button>Add New Forecast</button>
 <div id="options1"></div>
