@@ -5,6 +5,9 @@
 //On MYSQL results from Forecast by customer, show table
 ipcRenderer.on('SQLResults:Forecast',(event,res)=>{
 
+    //Create a "Download to Excel Button"
+    createADownloadButton();
+
 
     //Get names of column headers
     let monthNames = calcForecastMonths();
@@ -104,3 +107,35 @@ function calcForecastMonths()
     });
     return a_months;
 }
+
+
+
+
+
+
+
+
+//Create a button to download the table into excel after table is created
+function createADownloadButton () {
+    
+        //Clear old data before appending to div
+        var myNode = document.getElementById("options2");
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.firstChild);
+        }
+
+
+        let button = document.createElement("button");
+        button.innerText = "Download to Excel";
+        button.id = "excelDownloadButton";
+
+         //append element to div
+        $("#options2").append(button);
+
+        //tell tabulator to download sheet
+        button.onclick = function(){
+            $("#results").tabulator("download", "xlsx");
+        };
+    
+    
+    }

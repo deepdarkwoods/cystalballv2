@@ -3,9 +3,9 @@ const {ipcRenderer} = electron;
 
 
 
+//*************************************************************************************************
 
-
-
+//*************************************************************************************************
 //Return List of Customers who have forecast
 //Add drop down box for user to select customer and forecast type
 ipcRenderer.on('SQLResults:CustomerList',(event,res)=>{
@@ -77,6 +77,9 @@ ipcRenderer.on('SQLResults:CustomerList',(event,res)=>{
 
 
 
+//*************************************************************************************************
+
+//*************************************************************************************************
 //Return List of Customers who have forecast
 //Add drop down box for user to select customer and forecast type
 ipcRenderer.on('SQLResults:SkuList',(event,res)=>{
@@ -150,6 +153,9 @@ ipcRenderer.on('SQLResults:SkuList',(event,res)=>{
 
 
 
-ipcRenderer.on('SQLResults:SkuForecast',(event,res)=>{
- console.log(res)   ;
-});
+let createDownloadButton = ()=> {
+
+    let button = document.createElement("button");
+
+
+};
