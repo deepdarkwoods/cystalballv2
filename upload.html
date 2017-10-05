@@ -10,16 +10,14 @@
             <script lang="javascript" src="node_modules\xlsx\dist\xlsx.full.min.js"></script>
             <script>if (window.module) module = window.module;</script>
     </head>    
-<button onclick="ipcRenderer.send('SQLQuery:GetCustomerList')">Forecast By Customer</button>
-<button onclick="ipcRenderer.send('SQLQuery:GetSkuList')">Forecast By Sku</button>
-<button>Forecast Summary - All Customers</button>
-<button onclick="ipcRenderer.send('NewWindow:UploadForecast')">Add New Forecast</button>
+
+<button onclick="pickFile()">Choose File To Upload</button>
 <div id="options1"></div>
 <div id="options2"></div>
 <div id="results"></div>
 </html>
 
-<script src="index.js"></script>
-<script src="tabulator.js"></script>
+
+<script src="add-forecast.js"></script>
 
 

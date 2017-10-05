@@ -2,7 +2,6 @@ const electron = require('electron');
 const {ipcRenderer} = electron;
 
 
-
 //*************************************************************************************************
 
 //*************************************************************************************************
@@ -84,7 +83,6 @@ ipcRenderer.on('SQLResults:CustomerList',(event,res)=>{
 //Add drop down box for user to select customer and forecast type
 ipcRenderer.on('SQLResults:SkuList',(event,res)=>{
         
-    //Clear old data before appending to div
    //Clear old data before appending to div
    var myNode = document.getElementById("options1");
    while (myNode.firstChild) {
@@ -152,10 +150,3 @@ ipcRenderer.on('SQLResults:SkuList',(event,res)=>{
 });
 
 
-
-let createDownloadButton = ()=> {
-
-    let button = document.createElement("button");
-
-
-};

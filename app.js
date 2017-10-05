@@ -16,6 +16,9 @@ app.on('ready',()=>{
         protocol: 'file:',
         slashes: true
       }))
+
+    //open dev-tools on app.start
+    mainWindow.webContents.openDevTools();
 });
 
 
@@ -67,3 +70,19 @@ sql.SQLQuerySkuForecast(sku,forecasttype,function(result){
   });
 
 })
+
+
+//Request for SQLQuery: List of Skus with Forecast
+ipcMain.on('NewWindow:UploadForecast', (event) => {
+  let upload_window = new BrowserWindow();
+  
+  upload_window.loadURL(url.format({
+    pathname: path.join(__dirname, 'upload.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+   //open dev-tools on app.start
+   upload_window.webContents.openDevTools();
+
+});
