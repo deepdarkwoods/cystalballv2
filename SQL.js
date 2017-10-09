@@ -358,6 +358,59 @@ let SQLQuerySkuForecast = (sku, forecasttype, callback) =>{
 }
 
 
+//Query MYSQL for forecast by sku and type
+let SQLAddForecast = (forecast_array, callback) =>{        
+
+    let connection = getConnection();    
+
+    let query;
+
+    let monthDates = [(2017,10,28),(2017,11,25),(2017,12,31),(2018,01,27),(2018,01,27),(2018,01,27)]
+
+
+    for(let i=0;i<forecast_array.length;i++){
+
+        for(let j=0;j<6;j++){
+        query = (`INSERT INTO customerforecast
+                  (customernumber,customername,sku,forecastype,period,qty)
+                  VALUES
+                  (${forecast_array[i].customer_number},
+                    ${forecast_array[i].customer_name},
+                    ${forecast_array[i].sku},
+                    ${forecast_array[i].forecast_type}
+
+
+                  )
+        
+                `)
+
+   
+        } 
+    }
+        // let query = (`SELECT DISTINCT sku,skudescription
+        //               FROM customerforecast
+        //               ORDER BY sku` ); 
+
+ 
+
+    // connection.query(query,function(error,skus){
+    // if (error) console.log(error);                    
+
+    //callback(skus);
+
+    // });   
+
+    connection.end(function(){
+    console.log("Connection Terminated");
+    });    
+
+
+};
+
+
+
+
+
 
 //Return connection from MYSQL
 function getConnection(){
@@ -381,6 +434,7 @@ module.exports = {
     SQLQueryCustomerList,
     SQLQueryCustomerForecast,
     SQLQuerySkuList,
-    SQLQuerySkuForecast
+    SQLQuerySkuForecast,
+    SQLAddForecast
 
 };

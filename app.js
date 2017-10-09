@@ -63,13 +63,26 @@ sql.SQLQuerySkuList(function(result){
 //Request for SQLQuery: List of Skus with Forecast
 ipcMain.on('SQLQuery:GetSkuForecast', (event,sku,forecasttype) => {
   
-sql.SQLQuerySkuForecast(sku,forecasttype,function(result){
+    sql.SQLQuerySkuForecast(sku,forecasttype,function(result){
     
     mainWindow.webContents.send('SQLResults:Forecast', result);
 
   });
 
 })
+
+
+
+
+ipcMain.on('SQLQuery:UploadForecast',(event,forecast_array)=>{
+
+    sql.SQLAddForecast(forecast_array,function(result){
+
+  });
+
+});
+
+
 
 
 //Request for SQLQuery: List of Skus with Forecast
@@ -80,9 +93,10 @@ ipcMain.on('NewWindow:UploadForecast', (event) => {
     pathname: path.join(__dirname, 'upload.html'),
     protocol: 'file:',
     slashes: true
-  }))
 
+  }))
    //open dev-tools on app.start
    upload_window.webContents.openDevTools();
 
-});
+
+  });

@@ -5,8 +5,6 @@
 //On MYSQL results from Forecast by customer, show table
 ipcRenderer.on('SQLResults:Forecast',(event,res)=>{
 
-    console.log(JSON.stringify(res));
-
     //Create a "Download to Excel Button"
     createADownloadButton();
 
